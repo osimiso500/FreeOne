@@ -1,0 +1,100 @@
+/*{
+	"CREDIT": "SpoutControls - spout.zeal.co",
+	"DESCRIPTION": "FreeOne",
+	"CATEGORIES": [
+	"Parameter adjustment"
+	],
+	"INPUTS": [
+		{
+			"NAME": "WB_OFF",
+			"TYPE": "event",
+			"MIN": 0.00,
+			"MAX": 1.00,
+			"DEFAULT": 1.00
+		},
+		{
+			"NAME": "WB_normal",
+			"TYPE": "event",
+			"MIN": 0.00,
+			"MAX": 1.00,
+			"DEFAULT": 1.00
+		},
+		{
+			"NAME": "WB_invert",
+			"TYPE": "event",
+			"MIN": 0.00,
+			"MAX": 1.00,
+			"DEFAULT": 1.00
+		},
+		{
+			"NAME": "Tresh",
+			"TYPE": "event",
+			"MIN": 0.00,
+			"MAX": 1.00,
+			"DEFAULT": 1.00
+		},
+		{
+			"NAME": "TreshDef",
+			"TYPE": "float",
+			"MIN": 0.00,
+			"MAX": 1.00,
+			"DEFAULT": 0.00
+		},
+		{
+			"NAME": "Saba",
+			"TYPE": "event",
+			"MIN": 0.00,
+			"MAX": 1.00,
+			"DEFAULT": 1.00
+		},
+		{
+			"NAME": "SabaDef",
+			"TYPE": "float",
+			"MIN": 0.00,
+			"MAX": 1279.00,
+			"DEFAULT": 0.00
+		},
+		{
+			"NAME": "Sobel",
+			"TYPE": "event",
+			"MIN": 0.00,
+			"MAX": 0.00,
+			"DEFAULT": 0.00
+		},
+		{
+			"NAME": "SobelDef",
+			"TYPE": "float",
+			"MIN": 1.00,
+			"MAX": 2.00,
+			"DEFAULT": 1.00
+		},
+		{
+			"NAME": "OwnKreation",
+			"TYPE": "event",
+			"MIN": 0.00,
+			"MAX": 0.00,
+			"DEFAULT": 0.00
+		},
+		{
+			"NAME": "SprungDef",
+			"TYPE": "float",
+			"MIN": 0.00,
+			"MAX": 34.00,
+			"DEFAULT": 0.00
+		},
+		{
+			"NAME": "StartVideoEx",
+			"TYPE": "event",
+			"MIN": 0.00,
+			"MAX": 1.00,
+			"DEFAULT": 1.00
+		},
+		{
+			"NAME": "EndVideoEx",
+			"TYPE": "event",
+			"MIN": 0.00,
+			"MAX": 1.00,
+			"DEFAULT": 1.00
+		},
+	],
+}*/
