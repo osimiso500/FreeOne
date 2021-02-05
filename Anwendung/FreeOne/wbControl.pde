@@ -8,15 +8,15 @@ void wbControl() {
   case 1: 
 
     for (int sP = 0; sP < img.pixels.length; sP++) {
-        if (img.pixels[sP] == color(0,0,0)) { //alle kanäle  auf 0 prüfen ausser alpha
-          imgEx.pixels[sP] = color(0, 0, 0); //alle kanäle mit 0 überschreiben ausser alpha
+        if (img.pixels[sP] == color(0,0,0)) { //RGB Kanäle auf 0 prüfen
+          imgEx.pixels[sP] = color(0, 0, 0); //RGB Kanäle mit 0 überschreiben
         }
       }
     break;
   case 2:
       for (int sP = 0; sP < img.pixels.length; sP++) {
-        if (img.pixels[sP] == color(255,255,255)) {  //alle kanäle auf 0 prüfen ausser alpha
-          imgEx.pixels[sP] = color(0, 0, 0); //alle kanäle mit 0 überschreiben ausser alpha
+        if (img.pixels[sP] == color(255,255,255)) {  //RGB Kanäle auf 255 prüfen
+          imgEx.pixels[sP] = color(0, 0, 0); //RGB Kanäle mit 0 überschreiben
         }
       }
     break;

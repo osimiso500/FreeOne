@@ -31,26 +31,22 @@ void videosettings()
   
   //Create A NEW VIDEOEXPORT OBJECT
   videoExport = new VideoExport(this, outputname+".mov");
-  //set Quality of Video video, audio
-  //videoExport.setQuality(50,0);
+
   //set different parameters for ffmpeg export
   videoExport.setFfmpegVideoSettings(
     new String[]{
     "[ffmpeg]", // ffmpeg executable
-    "-y", // overwrite old file
     "-f", "rawvideo", // format rgb raw
-    "-vcodec", "rawvideo", // in codec rgb raw
     "-s", size, // size
     "-pix_fmt", "rgb24", // pix format rgb24
     "-r", ffmpegFrameRate, // frame rate
     "-i", "-", // pipe input
 
     "-an", // no audioq
-    //"-vsync","2",
     "-vcodec", "prores", // out codec prores_ks //rawvideo
     "-profile:","2",
     "-pix_fmt", "yuv422p10le", // color space yuv422p10le //rgb24*/
-    "-metadata", "comment=[comment]", // comment
+    "-metadata", "comment=[FreeOne]", // comment
     "[output]"                        // output file
     });
   //set the FrameRate of the Export for better performance

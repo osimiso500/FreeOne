@@ -14,7 +14,6 @@ void selectFilter()
               a = random(255);
               b = random(255);
               c = random(255);
-              colorWert2 = random(170,190);
               colorWert1 = random(10,230);
               freq=0;;
           }
@@ -56,7 +55,6 @@ void selectFilter()
               a = random(255);
               b = random(255);
               c = random(255);
-              colorWert2 = random(170,190);
               colorWert1 = random(10,230);
               freq=0;;
           }
@@ -64,11 +62,12 @@ void selectFilter()
       freq++;
     }
     
-    for (int sP = 0; sP < img.pixels.length; sP++) {//immer nach einerg bestimmten Zeit die schwellenerte verändern
-        if (red(img.pixels[sP]) <= (int)colorWert1) {//immer nach einer gewissen zeit eune neue random farbe erzeugen    && red(imgEx.pixels[sP]) > (int)colorWert2     
-          img.pixels[sP]=color(a,b,c);
+    for (int sP = 0; sP < imgEx.pixels.length; sP++) {//immer nach einer bestimmten Zeit werden die Schwellenerte verändern
+        if (red(imgEx.pixels[sP]) <= (int)colorWert1) {//immer nach einer gewissen Zeit werden eine neue random farbe erzeugen  
+          imgEx.pixels[sP]=color(a,b,c);
         }
       }
+      zeilensprung+= (int)sprungDef;
     break;
    case 4:  //OWN
     zeilensprung+= (int)sprungDef;

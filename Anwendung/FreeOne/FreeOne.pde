@@ -3,8 +3,6 @@ import spout.*;
 //import processing.video.*;
 import com.hamoid.*;
 
-
-
 // Images anlegen um Pixel zu speichern
 PImage img, imgEx;
 
@@ -16,20 +14,19 @@ float sprungDef = 0.0;
 float posterDef=2.0;
 float colorFreQ=6.0;
 
-
 float wbControl = 3;
 //Diese Variable wird genutzt um zu entscheiden ob die schwarzen oder die weißen Bereiche eingefärbt werden default = 1
 int displaySettings = 2;
 //ermöglicht die Aktivierung verschiedener AusgabeOptionen default = 2
-int whichFilter = 0;
-//welcher Filter wird angewendet? deafult = 0
+int whichFilter = 5;
+//welcher Filter wird angewendet? deafult = 5
 int zeilensprung=0;
 int sketchFPS = 30;
 
 int freq=0;
 
 float a=125,b=125,c=125;
-float colorWert1 = 75, colorWert2 = 155;
+float colorWert1 = 75;
 
 String infoFilter="NOFILTER is on";
 String infowbControl = "WBControl Mode 3 is on";
@@ -57,8 +54,6 @@ int tempfCount = 0;
 Spout spout, spoutSend, spoutSend2, spoutController;
 //Spout Objekte deklarieren
 VideoExport videoExport;
-//Spout Objekte deklarieren
-//OpenCV opencv;
 
 void setup() {
 
@@ -78,13 +73,11 @@ void setup() {
   setFPSdyn = new String[] {"eins"};
   setFPSdynEX = new String[1];
 
-
   spout = new Spout(this); //SPout Objekt wird instanziiert
   spoutSend = new Spout(this); //SPoutSend Objekt wird instanziiert
   spoutSend2 = new Spout(this); //SPoutSend Objekt wird instanziiert
   spoutController = new Spout(this); //SPoutController Objekt wird instanziiert
 
-  
   spoutController.createSpoutControl("NOR<IN>OFF", "float", 1.3, 3.7, 3.7); 
   spoutController.createSpoutControl("Tresh", "event",0);
   spoutController.createSpoutControl("TreshDef", "float", 0.0, 1.0, 0.0); 
@@ -109,12 +102,8 @@ void setup() {
     saveStrings("fps.txt", setFPSdyn);
   } 
   
-  //File f = new File(dataPath("/" + filename)); neinnein sketchpath...
-
-
   setFPSdynEX = loadStrings("fps.txt");
   checkFPS = setFPSdynEX[0];
-
 
 
   if (checkFPS.equals("eins")) {
@@ -136,8 +125,7 @@ void setup() {
     sketchFPS = 25;
   }
 
-
-  ////Framerate der Anwendung festlegen
+  //Framerate der Anwendung festlegen
   frameRate(sketchFPS+1);
 } 
 
@@ -145,13 +133,11 @@ void draw() {
 
   background(0); 
 
-  int nControls = spoutController.checkSpoutControls(controlName, controlType, 
-    controlValue, controlText); 
+  int nControls = spoutController.checkSpoutControls(controlName, controlType, controlValue, controlText); 
+  
 
   for (int i = 0; i < nControls; i++) {
     // "Welcher Filter wird gewählt"
-    //print(" allContr "+controlName[i]+"Name"+controlValue[i]+" i "+i+"\n");
-    
     if (controlName[i].equals("NOR<IN>OFF")) {
       if(controlValue[i] < 2){
         infowbControl = "WBControl Mode 1 is on";
@@ -184,19 +170,15 @@ void draw() {
     }
     if (controlName[i].equals("TreshDef")) {
       tresholdDef = controlValue[i];
-      //print(" 1Contr "+controlValue[i]+" i "+i);
     }
     if (controlName[i].equals("COLPIX_FREQ")) {
       colorFreQ = controlValue[i];
-      //print(" 1Contr "+controlValue[i]+" i "+i);
     }
     if (controlName[i].equals("OWN_Def")) {
       sprungDef = controlValue[i];
     }
     if (controlName[i].equals("StartVideoEx")&&controlValue[i]==1) {
-      //print(" 2Contr "+nControls+" i "+controlValue[i]);
       videosettings();
-      //spoutSend.sendTexture();
       displaySettings = 3;
       //start the Video Export
       videoExport.startMovie();
@@ -220,24 +202,33 @@ void draw() {
   }
 
 
-  img = spout.receivePixels(img); //Die von SPout empfangenen Pixel werden in ein PImage Objekt gespeichert
-  imgEx = spout.receivePixels(imgEx); //Die Daten werden ein zweites Mal empfangen 
+  img = spout.receivePixels(img); 
+  //Es wird ein Receiver erzeugt
+  //Die von SPout empfangenen Pixel werden in ein PImage Objekt gespeichert
+  imgEx = spout.receivePixels(imgEx); 
+  //Die Daten werden ein zweites Mal empfangen 
 
   img.loadPixels(); //Pixel werden in den PixelArray geladen
   imgEx.loadPixels(); //Pixel werden in den PixelArray geladen
 
-
-  selectFilter(); //Dieser Funktion wird eine Varibale übergeben und abhängig davon wird ein Filter zu Verarbeitung gewählt.
+  selectFilter(); 
+  //In dieser Funktion werden die Algorithmen in einem switch-case ausgewählt.
+  //Die Variable whichFilter speichert den Parameter für den switch-case
   
   img.updatePixels();//Pixel im PixelArray werden geupdated
   
-  wbControl(); //Diese Funktion legt fest in welche Pixel geschwärzt werden oder nicht. Dies wird anhand des Parameters festgelegt.
+  wbControl(); 
+  //Diese Funktion legt fest in welche Pixel geschwärzt werden oder nicht. 
+  //Dazu ist ein switch-case angelegt worden
+  //oder es wird keine Operation vorgenommen im case 3
+  //Dies wird anhand des Parameters wbControl entschieden.
 
+  imgEx.updatePixels(); 
+  //Nach der Verarbeitung durch einen Filter werden hier die Pixel in ImgEx aktualisiert.
 
-  imgEx.updatePixels(); //Nach der Verarbeitung durch einen Filter werden hier die Pixel in ImgEx aktualisiert.
-
-
-  setDisplayOptions();  //In dieser Funktion wird anhand einer Variable entschieden, welche Operationen auszuführen sind.
+  setDisplayOptions();  
+  //In dieser Funktion wird anhand einer Variable entschieden, 
+  //wie die Ausgabe auszuführen ist. Dazu wird eine switch-case genutzt.
   
   
  
