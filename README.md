@@ -43,6 +43,6 @@ auswählen, nach einem Rechtsklick im geöffneten Fenster, können die Sender au
 
 Dort "Avenue Screen" aus wählen.
 
-Jetzt kann Plugin genutzt werden.
+Jetzt kann das Plugin genutzt werden.
 
 Bei Fragen gerne auch eine Mail an osimiso@posteo.de
