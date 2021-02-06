@@ -1,7 +1,7 @@
 # FreeOne
 Bachelorarbeit
 
-Processing installieren
+Processing installieren,
 Resolume Avenue installieren
 
 Den Ordner SPOUT-2006_UPDATE-3 Ordner öffnen und im Ordner SPOUTSETTINGS die SpoutSettings.exe ausführen.
